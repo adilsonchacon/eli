@@ -32,8 +32,9 @@ defmodule Eli.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.18", only: :test},
-      {:req, "~> 0.4.14"},
-      {:mox, "~> 1.0", only: :test}
+      {:req, "~> 0.5"},
+      {:mox, "~> 1.0", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
