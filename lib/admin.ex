@@ -43,10 +43,10 @@ defmodule Eli.Admin do
       %{
         "data" => %{
           "active" => true,
-          "email" => "adilsonchacon@gmail.com",
+          "email" => "user@mail.com",
           "id" => "732cf1c2-6299-41fa-8784-e458765743b7",
           "language" => "en",
-          "name" => "Adilson Chacon",
+          "name" => "User Name",
           "timezone" => "Europe/London"
         }
       }
