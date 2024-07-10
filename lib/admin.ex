@@ -32,7 +32,7 @@ defmodule Eli.Admin do
   end
 
   @doc """
-  Asks if the user is signed in and returns user data.
+  Returns the current user data.
 
   ## Examples
 
@@ -55,7 +55,7 @@ defmodule Eli.Admin do
       %{"errors" => %{"detail" => "Not Found"}},
 
   """
-  def signed_in(session_token) do
+  def current_user(session_token) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions"
     options = %{
       headers: [ {"authorization", "Bearer #{session_token}"} ],

@@ -11,7 +11,7 @@ defmodule Eli.MixProject do
       source_url: @source_url,
       description: description(),
       package: package(),
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -45,7 +45,7 @@ defmodule Eli.MixProject do
   defp package() do
     [
       name: "eli",
-      files: ~w(lib mix.exs README.md LICENSE),
+      files: ~w(lib mix.exs README.md LICENSE config),
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
     ]

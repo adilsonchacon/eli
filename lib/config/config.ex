@@ -11,7 +11,7 @@ defmodule Eli.Config do
     Eli.Config.base_url("http://localhost:4000")
   """
   def base_url(value) when is_binary(value) do
-    Process.put(:eli_config_base_url, value)
+    Process.put(:eli_letmein_base_url, value)
   end
 
   @spec base_url() :: binary()
@@ -22,6 +22,6 @@ defmodule Eli.Config do
     Eli.Config.base_url()
   """
   def base_url() do
-    Process.get(:eli_config_base_url)
+    Process.get(:eli_letmein_base_url) || Application.fetch_env!(:eli, :letmein_base_url)
   end
 end
