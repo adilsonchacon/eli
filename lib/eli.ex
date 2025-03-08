@@ -33,6 +33,31 @@ defmodule Eli do
   end
 
   @doc """
+  Checks whether the user is signed in or not.
+
+  ## Examples
+
+      iex> Eli.signed_in("JWT session token")
+      :signed_in
+
+      200
+      %{
+      }
+
+      404
+      %{"errors" => %{"detail" => "Not Found"}},
+
+  """
+  def signed_in(session_token) do
+    url = Eli.Config.base_url() <> "/rest/sessions/signed_in"
+    options = %{
+      headers: [ {"authorization", "Bearer #{session_token}"} ],
+    }
+
+    RESTApi.head(url, options)
+  end
+
+  @doc """
   Returns the current user data.
 
   ## Examples
@@ -44,7 +69,7 @@ defmodule Eli do
       %{
         "data" => %{
           "active" => true,
-          "email" => "adilsonchacon@gmail.com",
+          "email" => "user.name@domain.com",
           "id" => "732cf1c2-6299-41fa-8784-e458765743b7",
           "language" => "en",
           "name" => "Adilson Chacon",
