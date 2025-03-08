@@ -40,13 +40,9 @@ defmodule Eli do
       iex> Eli.signed_in("JWT session token")
       :signed_in
 
-      200
-      %{
-      }
+      true
 
-      404
-      %{"errors" => %{"detail" => "Not Found"}},
-
+      false
   """
   def signed_in(session_token) do
     url = Eli.Config.base_url() <> "/rest/sessions/signed_in"
@@ -54,7 +50,8 @@ defmodule Eli do
       headers: [ {"authorization", "Bearer #{session_token}"} ],
     }
 
-    RESTApi.head(url, options)
+    resp = RESTApi.head(url, options)
+    resp.status == 200
   end
 
   @doc """

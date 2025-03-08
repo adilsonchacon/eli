@@ -32,6 +32,28 @@ defmodule Eli.Admin do
   end
 
   @doc """
+  Checks whether the admin user is signed in or not.
+
+  ## Examples
+
+      iex> Eli.signed_in("JWT session token")
+      :signed_in
+
+      true
+
+      false
+  """
+  def signed_in(session_token) do
+    url = Eli.Config.base_url() <> "/rest/admin/sessions/signed_in"
+    options = %{
+      headers: [ {"authorization", "Bearer #{session_token}"} ],
+    }
+
+    resp = RESTApi.head(url, options)
+    resp.status == 200
+  end
+
+  @doc """
   Returns the current user data.
 
   ## Examples
