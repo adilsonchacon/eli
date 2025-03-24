@@ -142,7 +142,7 @@ defmodule Eli.Admin do
 
       iex> Eli.unlock("Unlock token")
 
-      200
+      202
       %{"data" => %{"message" => "account was successfully unlocked"}}
 
       404
@@ -150,9 +150,32 @@ defmodule Eli.Admin do
 
   """
   def unlock(unlock_token) do
-    url = Eli.Config.base_url() <> "/rest/sessions/unlock"
+    url = Eli.Config.base_url() <> "/rest/accounts/unlock"
     options = %{
       params: %{ token: unlock_token }
+    }
+
+    RESTApi.put(url, options)
+  end
+
+  @doc """
+  Confirms user's email.
+
+  ## Examples
+
+      iex> Eli.confirm("Confirmation token")
+
+      202
+      %{"data" => %{"message" => "account was successfully confirmed"}}
+
+      404
+      %{"errors" => %{"detail" => "Not Found"}}
+
+  """
+  def confirm(confirmation_token) do
+    url = Eli.Config.base_url() <> "/rest/accounts/confirm"
+    options = %{
+      params: %{ token: confirmation_token }
     }
 
     RESTApi.put(url, options)
