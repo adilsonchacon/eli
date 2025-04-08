@@ -187,4 +187,58 @@ defmodule Eli.Admin do
 
     RESTApi.put(url, options)
   end
+
+    @doc """
+  Requests password recovery.
+
+  ## Examples
+
+      iex> Eli.request_password_recovery("Confirmation token")
+
+      200
+      %{"data" => %{"message" => "password recovery was successfully requested"}}
+
+      404
+      %{"errors" => %{"detail" => "Not Found"}}
+
+  """
+  def request_password_recovery(app_token, email) do
+    url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+
+    options = %{
+      headers: [{"app-token", app_token}],
+      params: %{email: email}
+    }
+
+    RESTApi.post(url, options)
+  end
+
+  @doc """
+  Recover password updating it.
+
+  ## Examples
+
+      iex> Eli.request_password_recovery("Confirmation token")
+
+      200
+      %{"data" => %{"message" => "password was successfully recovered"}}
+
+      400
+      %{"errors" => %{"detail" => "token is invalid"}}
+
+      400
+      %{"errors" => %{"detail" => "password has an invalid format"}}
+
+      400
+      %{"errors" => %{"detail" => "password and confirmation password are different"}}
+  """
+  def recover_password(token, password, password_confirmation) do
+    url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+
+    options = %{
+      params: %{token: token, password: password, password_confirmation: password_confirmation}
+    }
+
+    RESTApi.put(url, options)
+  end
 end
