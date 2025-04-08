@@ -2,7 +2,7 @@ defmodule Eli.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/adilsonchacon/eli"
-  @version "0.1.6"
+  @version "0.1.7"
 
   def project do
     [

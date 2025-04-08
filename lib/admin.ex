@@ -163,7 +163,7 @@ defmodule Eli.Admin do
 
   ## Examples
 
-      iex> Eli.confirm("Confirmation token")
+      iex> Eli.confirm("Confirmation token")`
 
       202
       %{"data" => %{"message" => "account was successfully confirmed"}}
