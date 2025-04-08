@@ -21,6 +21,7 @@ defmodule Eli.Admin do
   """
   def sign_in(email, password) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions"
+
     options = %{
       params: %{
         email: email,
@@ -45,8 +46,9 @@ defmodule Eli.Admin do
   """
   def signed_in(session_token) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions/signed_in"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     resp = RESTApi.head(url, options)
@@ -79,8 +81,9 @@ defmodule Eli.Admin do
   """
   def current_user(session_token) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.get(url, options)
@@ -106,8 +109,9 @@ defmodule Eli.Admin do
   """
   def refresh(session_token) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.put(url, options)
@@ -128,8 +132,9 @@ defmodule Eli.Admin do
   """
   def sign_out(session_token) do
     url = Eli.Config.base_url() <> "/rest/admin/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.delete(url, options)
@@ -151,8 +156,9 @@ defmodule Eli.Admin do
   """
   def unlock(unlock_token) do
     url = Eli.Config.base_url() <> "/rest/accounts/unlock"
+
     options = %{
-      params: %{ token: unlock_token }
+      params: %{token: unlock_token}
     }
 
     RESTApi.put(url, options)
@@ -174,8 +180,9 @@ defmodule Eli.Admin do
   """
   def confirm(confirmation_token) do
     url = Eli.Config.base_url() <> "/rest/accounts/confirm"
+
     options = %{
-      params: %{ token: confirmation_token }
+      params: %{token: confirmation_token}
     }
 
     RESTApi.put(url, options)

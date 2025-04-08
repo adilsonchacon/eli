@@ -21,8 +21,9 @@ defmodule Eli do
   """
   def sign_in(app_token, email, password) do
     url = Eli.Config.base_url() <> "/rest/sessions"
+
     options = %{
-      headers: [ {"app-token", app_token} ],
+      headers: [{"app-token", app_token}],
       params: %{
         email: email,
         password: password
@@ -46,8 +47,9 @@ defmodule Eli do
   """
   def signed_in(session_token) do
     url = Eli.Config.base_url() <> "/rest/sessions/signed_in"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     resp = RESTApi.head(url, options)
@@ -80,8 +82,9 @@ defmodule Eli do
   """
   def current_user(session_token) do
     url = Eli.Config.base_url() <> "/rest/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.get(url, options)
@@ -107,8 +110,9 @@ defmodule Eli do
   """
   def refresh(session_token) do
     url = Eli.Config.base_url() <> "/rest/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.put(url, options)
@@ -129,8 +133,9 @@ defmodule Eli do
   """
   def sign_out(session_token) do
     url = Eli.Config.base_url() <> "/rest/sessions"
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.delete(url, options)
@@ -152,8 +157,9 @@ defmodule Eli do
   """
   def unlock(unlock_token) do
     url = Eli.Config.base_url() <> "/rest/accounts/unlock"
+
     options = %{
-      params: %{ token: unlock_token }
+      params: %{token: unlock_token}
     }
 
     RESTApi.put(url, options)
@@ -175,8 +181,9 @@ defmodule Eli do
   """
   def confirm(confirmation_token) do
     url = Eli.Config.base_url() <> "/rest/accounts/confirm"
+
     options = %{
-      params: %{ token: confirmation_token }
+      params: %{token: confirmation_token}
     }
 
     RESTApi.put(url, options)
@@ -198,9 +205,10 @@ defmodule Eli do
   """
   def request_password_recovery(app_token, email) do
     url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+
     options = %{
-      headers: [ {"app-token", app_token} ],
-      params: %{ email: email }
+      headers: [{"app-token", app_token}],
+      params: %{email: email}
     }
 
     RESTApi.post(url, options)
@@ -227,11 +235,11 @@ defmodule Eli do
   """
   def recover_password(token, password, password_confirmation) do
     url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+
     options = %{
-      params: %{ token: token, password: password, password_confirmation: password_confirmation }
+      params: %{token: token, password: password, password_confirmation: password_confirmation}
     }
 
     RESTApi.put(url, options)
   end
-
 end

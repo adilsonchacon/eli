@@ -19,14 +19,15 @@ defmodule Eli.Admin.Organization do
   """
   def create(session_token, %Eli.Admin.Organization{} = organization) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations"
+
     options = %{
       params: %{
         organization: %{
           name: organization.name,
-          description: organization.description,
+          description: organization.description
         }
       },
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.post(url, options)
@@ -61,12 +62,13 @@ defmodule Eli.Admin.Organization do
   """
   def list(session_token, page \\ 1, per_page \\ 20) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations"
+
     options = %{
       params: %{
         page: page,
         per_page: per_page
       },
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.get(url, options)
@@ -89,8 +91,9 @@ defmodule Eli.Admin.Organization do
   """
   def get(session_token, id) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.get(url, options)
@@ -113,14 +116,15 @@ defmodule Eli.Admin.Organization do
   """
   def update(session_token, id, %Eli.Admin.Organization{} = organization) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id
+
     options = %{
       params: %{
         organization: %{
           name: organization.name,
-          description: organization.description,
+          description: organization.description
         }
       },
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.put(url, options)
@@ -138,13 +142,13 @@ defmodule Eli.Admin.Organization do
   """
   def delete(session_token, id) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ],
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.delete(url, options)
   end
-
 
   @doc """
 
@@ -182,12 +186,13 @@ defmodule Eli.Admin.Organization do
   """
   def list_admin_users(session_token, id, page \\ 1, per_page \\ 20) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id <> "/admin_users"
+
     options = %{
       params: %{
         page: page,
         per_page: per_page
       },
-      headers: [ {"authorization", "Bearer #{session_token}"} ]
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.get(url, options)
@@ -217,11 +222,12 @@ defmodule Eli.Admin.Organization do
   """
   def add_admin_user(session_token, id, email) do
     url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id <> "/admin_users"
+
     options = %{
       params: %{
         email: email
       },
-      headers: [ {"authorization", "Bearer #{session_token}"} ]
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.post(url, options)
@@ -242,9 +248,12 @@ defmodule Eli.Admin.Organization do
       >
   """
   def remove_admin_user(session_token, id, organization_admin_user_id) do
-    url = Eli.Config.base_url() <> "/rest/admin/organizations/" <> id <> "/admin_users/" <> organization_admin_user_id
+    url =
+      Eli.Config.base_url() <>
+        "/rest/admin/organizations/" <> id <> "/admin_users/" <> organization_admin_user_id
+
     options = %{
-      headers: [ {"authorization", "Bearer #{session_token}"} ]
+      headers: [{"authorization", "Bearer #{session_token}"}]
     }
 
     RESTApi.delete(url, options)

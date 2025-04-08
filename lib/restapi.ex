@@ -113,7 +113,7 @@ defmodule RESTApi do
   end
 
   defp build_headers(headers) when is_map(headers) do
-    Enum.map(headers.keys, fn key -> { "#{key}", "#{headers[key]}" } end)
+    Enum.map(headers.keys, fn key -> {"#{key}", "#{headers[key]}"} end)
   end
 
   defp build_headers(headers) when is_list(headers) do
@@ -136,7 +136,8 @@ defmodule RESTApi do
 
   defp headers_have_app_json_content_type(headers) do
     Enum.find(headers, fn header ->
-      ["CONTENT-TYPE", "APPLICATION/JSON"] == Enum.map(Tuple.to_list(header), fn h -> String.upcase("#{h}") end)
+      ["CONTENT-TYPE", "APPLICATION/JSON"] ==
+        Enum.map(Tuple.to_list(header), fn h -> String.upcase("#{h}") end)
     end)
   end
 
@@ -148,18 +149,18 @@ defmodule RESTApi do
     uri = URI.parse(url)
 
     Map.merge(uri, %{query: build_url_params(uri.query, extra_params)})
-    |> URI.to_string
+    |> URI.to_string()
   end
 
   defp build_url_params(query_params, %{} = extra_params) do
-    params = unless is_nil(query_params) do
-      URI.decode_query(query_params)
-    else
-      %{}
-    end
+    params =
+      unless is_nil(query_params) do
+        URI.decode_query(query_params)
+      else
+        %{}
+      end
 
     Map.merge(params, extra_params)
-    |> URI.encode_query
+    |> URI.encode_query()
   end
-
 end
