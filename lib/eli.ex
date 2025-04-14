@@ -204,7 +204,7 @@ defmodule Eli do
 
   """
   def request_password_recovery(app_token, email) do
-    url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+    url = Eli.Config.base_url() <> "/rest/accounts/password/recover"
 
     options = %{
       headers: [{"app-token", app_token}],
@@ -234,7 +234,7 @@ defmodule Eli do
       %{"errors" => %{"detail" => "password and confirmation password are different"}}
   """
   def recover_password(token, password, password_confirmation) do
-    url = Eli.Config.base_url() <> "/rest/accounts/password_recovery"
+    url = Eli.Config.base_url() <> "/rest/accounts/password/recover"
 
     options = %{
       params: %{token: token, password: password, password_confirmation: password_confirmation}
