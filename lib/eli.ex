@@ -242,4 +242,28 @@ defmodule Eli do
 
     RESTApi.put(url, options)
   end
+
+  @doc """
+  Resend email for account confirmation.
+
+  ## Examples
+
+      iex> Eli.resend_account_confirmation_email("App token", "user@example.com")
+
+      200
+      %{"data" => %{"message" => "account confirmation email was successfully sent"}}
+
+      404
+      %{"errors" => %{"detail" => "Not Found"}}
+  """
+  def resend_account_confirmation_email(app_token, email) do
+    url = Eli.Config.base_url() <> "/rest/accounts/confirm/resend"
+
+    options = %{
+      headers: [{"app-token", app_token}],
+      params: %{email: email}
+    }
+
+    RESTApi.post(url, options)
+  end
 end
