@@ -241,4 +241,38 @@ defmodule Eli.Admin do
 
     RESTApi.put(url, options)
   end
+
+  @doc """
+  Admin signs in any user without password.
+
+  ## Examples
+
+      iex> Eli.Admin.signs_in(session_token, %{email: "user.email@domain.com", name: "User Name"}, app_id)
+      200
+      %{
+        "data" => %{
+          "user" => %{
+            "active" => true,
+            "email" => "
+            ...
+        }
+      }
+
+      400
+      %{"errors" => %{"detail" => "invalid credentials"}},
+  """
+  def signs_in(session_token, user_data, app_id) do
+    url = Eli.Config.base_url() <> "/rest/admin/sessions/signs_in"
+
+    options = %{
+      headers: [{"authorization", "Bearer #{session_token}"}],
+      params: %{
+        user_data: user_data,
+        app_id: app_id
+      }
+    }
+
+    RESTApi.post(url, options)
+  end
+
 end
