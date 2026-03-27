@@ -248,6 +248,31 @@ defmodule Eli do
 
   ## Examples
 
+      iex> passwords = %{current_password: "Secret.123", new_password: "NewSecret.1234", new_password_confirmation: "NewSecret.1234"}
+      iex> Eli.resend_account_confirmation_email(JWT session token", password)
+
+      200
+      %{"data" => %{"message" => "password was successfully changed"}}
+
+      404
+      %{"errors" => %{"detail" => "Error message"}}
+  """
+  def update_password(session_token, passwords = %{}) do
+    url = Eli.Config.base_url() <> "/rest/accounts/update/password"
+
+    options = %{
+      headers: [{"authorization", "Bearer #{session_token}"}]
+      params: passwords
+    }
+
+    RESTApi.put(url, options)
+  end
+
+  @doc """
+  Resend email for account confirmation.
+
+  ## Examples
+
       iex> Eli.resend_account_confirmation_email("App token", "user@example.com")
 
       200
