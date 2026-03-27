@@ -254,14 +254,14 @@ defmodule Eli do
       200
       %{"data" => %{"message" => "password was successfully changed"}}
 
-      404
+      400 or 404
       %{"errors" => %{"detail" => "Error message"}}
   """
   def update_password(session_token, passwords = %{}) do
     url = Eli.Config.base_url() <> "/rest/accounts/update/password"
 
     options = %{
-      headers: [{"authorization", "Bearer #{session_token}"}]
+      headers: [{"authorization", "Bearer #{session_token}"}],
       params: passwords
     }
 
