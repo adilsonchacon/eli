@@ -258,7 +258,7 @@ defmodule Eli do
       %{"errors" => %{"detail" => "Error message"}}
   """
   def update_password(session_token, passwords = %{}) do
-    url = Eli.Config.base_url() <> "/rest/accounts/update/password"
+    url = Eli.Config.base_url() <> "/rest/accounts/password/update"
 
     options = %{
       headers: [{"authorization", "Bearer #{session_token}"}],
